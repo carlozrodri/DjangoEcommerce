@@ -56,34 +56,141 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand waves-effect" href="/">
+      <strong class="blue-text">DJANGO</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/menus/">Menu<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/locations/">Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact/">Contact</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav nav-flex-icons">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+                {% if request.user|cart_item_count != 0 %}
+                  <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+                {% endif %}
+                <i class="fas fa-shopping-cart"></i>
+                <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect">
+                Hi {{ user.username }}!
+                </a>
+            </li>
+            </li class="nav-item">
+                <a class="nav-link waves-effect" href="{% url 'logout' %}"> logout</a>
+            </li>
+            {% else %}
+            </li class="nav-item">
+                <a class="nav-link waves-effect" href="{% url 'login' %}"> login</a>
+            </li>
+          {% endif %}
+        </ul>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{message.tags}}" role="alert">
+                  {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+      </span>
 
-      <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="/">
+
+      
+
+
+    </div>
+  </nav>
+
+  <!-- Navbar -->
+  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container"> -->
+
+    <!-- Brand -->
+      <!-- <a class="navbar-brand waves-effect" href="/">
         <strong class="blue-text">DJANGO</strong>
-      </a>
+      </a> -->
+
+      <!-- Menu -->
+      <!-- <div class="nav-desktop justify-content-center">
+        <button class="btn btn-outline-success" type="button">
+          <a href="/menus/" class="">
+            Menu
+          </a>
+        </button> -->
+
+      <!-- Locations -->
+        <!-- <button class="btn btn-outline-success" type="button">
+          <a href="/locations/" class="">
+            Locations
+          </a>
+        </button> -->
+
+      <!-- Order Online -->
+      <!-- <button class="btn btn-outline-success" type="button">
+        <a href="/order-online/" class="nav-item ">
+          Order Online
+        </a>
+      </button> -->
+
+      <!-- Shop -->
+      <!-- <button class="btn btn-outline-success" type="button">
+        <a target="_blank" href="https://shop.honestburgers.co.uk/" class="nav-item">
+          Shop
+        </a>
+      </button> -->
+
+      <!-- Jobs -->
+      <!-- <button class="btn btn-outline-success" type="button">
+        <a href="/jobs/" class="nav-item ">
+          Jobs
+        </a>
+      </button> -->
+
+      <!-- Contact -->
+        <!-- <button class="btn btn-outline-success" type="button">
+          <a href="/contact/" class="">
+            Contact
+          </a>
+        </button>
+
+      </div> -->
 
       <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
 
       <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
 
         <!-- Left -->
-        <ul class="navbar-nav mr-auto">
+        <!-- <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           
-          </li>
-        </ul>
+          </li> -->
+        <!-- </ul> -->
 
         <!-- Right -->
-        <ul class="navbar-nav nav-flex-icons">
+        <!-- <ul class="navbar-nav nav-flex-icons"> -->
           
-         
+<!--          
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
@@ -107,12 +214,12 @@
                 <a class="nav-link waves-effect" href="{% url 'login' %}"> login</a>
             </li>
             {% endif %}
-        </ul>
+        </ul> -->
 
-      </div>
+      <!-- </div>
 
     </div>
-  </nav>
+  </nav> -->
   <!-- Navbar -->
   <div class="mt-5 pt-4">
     {% if messages %}
